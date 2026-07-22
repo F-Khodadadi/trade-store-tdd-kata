@@ -20,6 +20,9 @@ public class Store: ITradeStore
     public void Add(Trade trade)
     {
         ArgumentNullException.ThrowIfNull(trade, nameof(trade));
+        if(_trades.Any(existingTrade => existingTrade.TradeId == trade.TradeId))
+            throw new InvalidOperationException($"Trade with ID {trade.TradeId} already exists.");
+       
         _trades.Add(trade);
     }
     

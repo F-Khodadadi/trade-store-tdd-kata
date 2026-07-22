@@ -78,6 +78,34 @@ public class TradeStoreTests
         Assert.Single(result);
         Assert.Equal(newTrade.TradeId, result[0].TradeId);
     }
+
+    [Fact]
+    public void Add_ThrowsInvalidOperationException_WhenTradeIdAlreadyExists()
+    {
+        // Arrange
+        var existingTrade = new Trade
+        {
+            TradeId = 1,
+            Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" },
+            Amount = 50m,
+            Currency = "GBP",
+            TradeDate = DateTime.Now
+        };
+
+        var store = new Store(new List<Trade> { existingTrade });
+
+        var duplicateTrade = new Trade
+        {
+            TradeId = 1,
+            Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" },
+            Amount = 100m,
+            Currency = "USD",
+            TradeDate = DateTime.Now
+        };
+
+        // Act & Assert
+        Assert.Throws<InvalidOperationException>(() => store.Add(duplicateTrade));
+    }
     
     [Fact]
     public void Remove_RemovesTradeByTradeId()
