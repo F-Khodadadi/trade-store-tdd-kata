@@ -14,4 +14,10 @@ public class Store
     {
         return _trades.Where(t => t.CustomerId == customerId).ToList();
     }
+    
+    public void Add(Trade trade)
+    {
+        ArgumentNullException.ThrowIfNull(trade, nameof(trade));
+        _trades.Add(trade);
+    }
 }
