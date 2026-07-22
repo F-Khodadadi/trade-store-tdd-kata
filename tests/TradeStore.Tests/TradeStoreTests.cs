@@ -100,4 +100,24 @@ public class TradeStoreTests
         Assert.Single(result);
         Assert.Equal(1, result[0].TradeId);
     }
+    
+    [Fact]
+    public void Remove_WhenTradeDoesNotExist_DoesNothing()
+    {
+        // Arrange
+        var trades = new List<Trade>
+        {
+            new Trade { TradeId = 1, CustomerId = 10, Ammount = 50m, currency = "GBP", TradeDate = DateTime.Now }
+        };
+
+        var store = new Store(trades);
+
+        // Act
+        store.Remove(999);
+
+        // Assert
+        var result = store.GetByCustomerId(10);
+
+        Assert.Single(result);
+    }
 }
