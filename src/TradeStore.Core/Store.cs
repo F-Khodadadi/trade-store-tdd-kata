@@ -32,6 +32,7 @@ public class Store: ITradeStore
 
     public void Remove(Func<Trade, bool> predicate)
     {
-        throw new NotImplementedException();
+        _trades.RemoveAll(t => predicate(t));
+        // or _trades.RemoveAll(predicate.Invoke); 
     }
 }
