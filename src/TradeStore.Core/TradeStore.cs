@@ -2,11 +2,11 @@ using TradeStore.Core.Model;
 
 namespace TradeStore.Core;
 
-public class Store: ITradeStore
+public class TradeStore: ITradeStore
 {
     private readonly List<Trade> _trades; // private as its internal list
 
-    public Store(IEnumerable<Trade> initialData)
+    public TradeStore(IEnumerable<Trade> initialData)
     {
         ArgumentNullException.ThrowIfNull(initialData, nameof(initialData)); //prevents new store(new)
         _trades = initialData.ToList(); //Tolist() means owns its own copy and safer
@@ -37,6 +37,8 @@ public class Store: ITradeStore
 
     public void Remove(Func<Trade, bool> predicate)
     {
+        ArgumentNullException.ThrowIfNull(predicate);
+
         _trades.RemoveAll(t => predicate(t));
         // or _trades.RemoveAll(predicate.Invoke); 
     }

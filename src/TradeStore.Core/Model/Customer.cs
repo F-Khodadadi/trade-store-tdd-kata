@@ -1,4 +1,4 @@
-namespace TradeStore.Core;
+namespace TradeStore.Core.Model;
 
 public class Customer
 {
