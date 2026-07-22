@@ -10,9 +10,9 @@ public class TradeStoreTests
         // Arrange
         var trades = new[]
         {
-            new Trade {TradeId=1,CustomerId=10,Ammount = 50m, currency ="GBP", TradeDate = DateTime.Now},
-            new Trade {TradeId=2,CustomerId=10,Ammount = 100m, currency ="USD", TradeDate = DateTime.Now},
-            new Trade {TradeId=3,CustomerId=20,Ammount = 200m, currency ="EUR", TradeDate = DateTime.Now},
+            new Trade {TradeId=1,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 50m, currency ="GBP", TradeDate = DateTime.Now},
+            new Trade {TradeId=2,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 100m, currency ="USD", TradeDate = DateTime.Now},
+            new Trade {TradeId=3,Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Ammount = 200m, currency ="EUR", TradeDate = DateTime.Now},
         };
         
         var store = new Store(trades);
@@ -22,7 +22,7 @@ public class TradeStoreTests
         
         // Assert
         Assert.Equal(2, result.Count);
-        Assert.All(result, trade => Assert.Equal(10, trade.CustomerId));
+        Assert.All(result, trade => Assert.Equal(10, trade.Customer.CustomerId));
     }
     
     [Fact]
@@ -31,9 +31,9 @@ public class TradeStoreTests
         // Arrange
         var trades = new[]
         {
-            new Trade {TradeId=1,CustomerId=10,Ammount = 50m, currency ="GBP", TradeDate = DateTime.Now},
-            new Trade {TradeId=2,CustomerId=10,Ammount = 100m, currency ="USD", TradeDate = DateTime.Now},
-            new Trade {TradeId=3,CustomerId=20,Ammount = 200m, currency ="EUR", TradeDate = DateTime.Now},
+            new Trade {TradeId=1,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 50m, currency ="GBP", TradeDate = DateTime.Now},
+            new Trade {TradeId=2,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 100m, currency ="USD", TradeDate = DateTime.Now},
+            new Trade {TradeId=3,Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Ammount = 200m, currency ="EUR", TradeDate = DateTime.Now},
         };
         
         var store = new Store(trades);
@@ -61,13 +61,13 @@ public class TradeStoreTests
         // Arrange
         var trades = new List<Trade>
         {
-            new Trade {TradeId=1,CustomerId=10,Ammount = 50m, currency ="GBP", TradeDate = DateTime.Now},
-            new Trade {TradeId=2,CustomerId=10,Ammount = 100m, currency ="USD", TradeDate = DateTime.Now},
+            new Trade {TradeId=1,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 50m, currency ="GBP", TradeDate = DateTime.Now},
+            new Trade {TradeId=2,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 100m, currency ="USD", TradeDate = DateTime.Now},    
         };
         
         var store = new Store(trades);
         
-        var newTrade = new Trade {TradeId=3,CustomerId=20,Ammount = 200m, currency ="EUR", TradeDate = DateTime.Now};
+        var newTrade = new Trade {TradeId=3,Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Ammount = 200m, currency ="EUR", TradeDate = DateTime.Now};
         
         // Act
         store.Add(newTrade);
@@ -84,9 +84,9 @@ public class TradeStoreTests
         // Arrange
         var trades = new List<Trade>
         {
-            new Trade { TradeId = 1, CustomerId = 10, Ammount = 50m, currency = "GBP", TradeDate = DateTime.Now },
-            new Trade { TradeId = 2, CustomerId = 10, Ammount = 100m, currency = "USD", TradeDate = DateTime.Now },
-            new Trade { TradeId = 3, CustomerId = 20, Ammount = 200m, currency = "EUR", TradeDate = DateTime.Now }
+            new Trade { TradeId = 1, Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 50m, currency = "GBP", TradeDate = DateTime.Now },
+            new Trade { TradeId = 2, Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 100m, currency = "USD", TradeDate = DateTime.Now },
+            new Trade { TradeId = 3, Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Ammount = 200m, currency = "EUR", TradeDate = DateTime.Now }
         };
 
         var store = new Store(trades);
@@ -107,7 +107,7 @@ public class TradeStoreTests
         // Arrange
         var trades = new List<Trade>
         {
-            new Trade { TradeId = 1, CustomerId = 10, Ammount = 50m, currency = "GBP", TradeDate = DateTime.Now }
+            new Trade { TradeId = 1, Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 50m, currency = "GBP", TradeDate = DateTime.Now }
         };
 
         var store = new Store(trades);
@@ -125,17 +125,19 @@ public class TradeStoreTests
     public void Remove_WithPredicate_RemovesMatchingTrades()
     {
         //Arrange
+        var customer = new Customer { CustomerId = 10, Name = "John Doe", Email = ""};
+        
         var trades = new List<Trade>
         {
-            new Trade { TradeId = 1, CustomerId = 10, Ammount = 50m, currency = "GBP", TradeDate = DateTime.Now },
-            new Trade { TradeId = 2, CustomerId = 10, Ammount = 100m, currency = "USD", TradeDate = DateTime.Now },
-            new Trade { TradeId = 3, CustomerId = 20, Ammount = 200m, currency = "EUR", TradeDate = DateTime.Now }
+            new Trade { TradeId = 1, Customer = customer, Ammount = 50m, currency = "GBP", TradeDate = DateTime.Now },
+            new Trade { TradeId = 2, Customer = customer, Ammount = 100m, currency = "USD", TradeDate = DateTime.Now },
+            new Trade { TradeId = 3, Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Ammount = 200m, currency = "EUR", TradeDate = DateTime.Now }
         };
 
         var store = new Store(trades);
 
         // Act
-        store.Remove(t => t.CustomerId == 10);
+        store.Remove(t => t.Customer.CustomerId == 10);
 
         // Assert
         var result = store.GetByCustomerId(10);

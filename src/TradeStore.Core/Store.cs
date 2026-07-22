@@ -12,7 +12,7 @@ public class Store: ITradeStore
 
     public IReadOnlyList<Trade> GetByCustomerId(int customerId)
     {
-        return _trades.Where(t => t.CustomerId == customerId).ToList();
+        return _trades.Where(t => t.Customer.CustomerId == customerId).ToList();
     }
     
     public void Add(Trade trade)
