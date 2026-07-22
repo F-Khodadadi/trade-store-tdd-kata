@@ -44,4 +44,14 @@ public class TradeStoreTests
         // Assert
         Assert.Empty(result);
     }
+    
+    [Fact]
+    public void Constructor_ThrowsArgumentNullException_WhenInitialDataIsNull()
+    {
+        // Arrange
+        IEnumerable<Trade> trades = null;
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new Store(trades));
+    }
 }

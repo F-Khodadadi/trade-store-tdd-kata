@@ -6,6 +6,7 @@ public class Store
 
     public Store(IEnumerable<Trade> initialData)
     {
+        ArgumentNullException.ThrowIfNull(initialData, nameof(initialData)); //prevents new store(new)
         _trades = initialData.ToList(); //Tolist() means owns its own copy and safer
     }
 
