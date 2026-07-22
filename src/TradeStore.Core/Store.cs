@@ -20,4 +20,13 @@ public class Store
         ArgumentNullException.ThrowIfNull(trade, nameof(trade));
         _trades.Add(trade);
     }
+    
+    public void Remove(int tradeId)
+    {
+        var tradeToRemove = _trades.FirstOrDefault(t => t.TradeId == tradeId);
+        if (tradeToRemove != null)
+        {
+            _trades.Remove(tradeToRemove);
+        }
+    }
 }

@@ -77,4 +77,27 @@ public class TradeStoreTests
         Assert.Single(result);
         Assert.Equal(newTrade.TradeId, result[0].TradeId);
     }
+    
+    [Fact]
+    public void Remove_RemovesTradeByTradeId()
+    {
+        // Arrange
+        var trades = new List<Trade>
+        {
+            new Trade { TradeId = 1, CustomerId = 10, Ammount = 50m, currency = "GBP", TradeDate = DateTime.Now },
+            new Trade { TradeId = 2, CustomerId = 10, Ammount = 100m, currency = "USD", TradeDate = DateTime.Now },
+            new Trade { TradeId = 3, CustomerId = 20, Ammount = 200m, currency = "EUR", TradeDate = DateTime.Now }
+        };
+
+        var store = new Store(trades);
+
+        // Act
+        store.Remove(2);
+
+        // Assert
+        var result = store.GetByCustomerId(10);
+
+        Assert.Single(result);
+        Assert.Equal(1, result[0].TradeId);
+    }
 }
