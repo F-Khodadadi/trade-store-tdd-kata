@@ -1,3 +1,5 @@
+using TradeStore.Core.Model;
+
 namespace TradeStore.Core;
 
 public class Store: ITradeStore

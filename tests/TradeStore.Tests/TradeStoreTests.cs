@@ -1,4 +1,5 @@
 using TradeStore.Core;
+using TradeStore.Core.Model;
 
 namespace TradeStore.Tests;
 
@@ -10,9 +11,9 @@ public class TradeStoreTests
         // Arrange
         var trades = new[]
         {
-            new Trade {TradeId=1,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 50m, currency ="GBP", TradeDate = DateTime.Now},
-            new Trade {TradeId=2,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 100m, currency ="USD", TradeDate = DateTime.Now},
-            new Trade {TradeId=3,Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Ammount = 200m, currency ="EUR", TradeDate = DateTime.Now},
+            new Trade {TradeId=1,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Amount = 50m, Currency ="GBP", TradeDate = DateTime.Now},
+            new Trade {TradeId=2,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Amount = 100m, Currency ="USD", TradeDate = DateTime.Now},
+            new Trade {TradeId=3,Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Amount = 200m, Currency ="EUR", TradeDate = DateTime.Now},
         };
         
         var store = new Store(trades);
@@ -31,9 +32,9 @@ public class TradeStoreTests
         // Arrange
         var trades = new[]
         {
-            new Trade {TradeId=1,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 50m, currency ="GBP", TradeDate = DateTime.Now},
-            new Trade {TradeId=2,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 100m, currency ="USD", TradeDate = DateTime.Now},
-            new Trade {TradeId=3,Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Ammount = 200m, currency ="EUR", TradeDate = DateTime.Now},
+            new Trade {TradeId=1,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Amount = 50m, Currency ="GBP", TradeDate = DateTime.Now},
+            new Trade {TradeId=2,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Amount = 100m, Currency ="USD", TradeDate = DateTime.Now},
+            new Trade {TradeId=3,Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Amount = 200m, Currency ="EUR", TradeDate = DateTime.Now},
         };
         
         var store = new Store(trades);
@@ -61,13 +62,13 @@ public class TradeStoreTests
         // Arrange
         var trades = new List<Trade>
         {
-            new Trade {TradeId=1,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 50m, currency ="GBP", TradeDate = DateTime.Now},
-            new Trade {TradeId=2,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 100m, currency ="USD", TradeDate = DateTime.Now},    
+            new Trade {TradeId=1,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Amount = 50m, Currency ="GBP", TradeDate = DateTime.Now},
+            new Trade {TradeId=2,Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Amount = 100m, Currency ="USD", TradeDate = DateTime.Now},    
         };
         
         var store = new Store(trades);
         
-        var newTrade = new Trade {TradeId=3,Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Ammount = 200m, currency ="EUR", TradeDate = DateTime.Now};
+        var newTrade = new Trade {TradeId=3,Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Amount = 200m, Currency ="EUR", TradeDate = DateTime.Now};
         
         // Act
         store.Add(newTrade);
@@ -84,9 +85,9 @@ public class TradeStoreTests
         // Arrange
         var trades = new List<Trade>
         {
-            new Trade { TradeId = 1, Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 50m, currency = "GBP", TradeDate = DateTime.Now },
-            new Trade { TradeId = 2, Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 100m, currency = "USD", TradeDate = DateTime.Now },
-            new Trade { TradeId = 3, Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Ammount = 200m, currency = "EUR", TradeDate = DateTime.Now }
+            new Trade { TradeId = 1, Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Amount = 50m, Currency = "GBP", TradeDate = DateTime.Now },
+            new Trade { TradeId = 2, Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Amount = 100m, Currency = "USD", TradeDate = DateTime.Now },
+            new Trade { TradeId = 3, Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Amount = 200m, Currency = "EUR", TradeDate = DateTime.Now }
         };
 
         var store = new Store(trades);
@@ -107,7 +108,7 @@ public class TradeStoreTests
         // Arrange
         var trades = new List<Trade>
         {
-            new Trade { TradeId = 1, Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Ammount = 50m, currency = "GBP", TradeDate = DateTime.Now }
+            new Trade { TradeId = 1, Customer = new Customer { CustomerId = 10, Name = "John Doe", Email = "" }, Amount = 50m, Currency = "GBP", TradeDate = DateTime.Now }
         };
 
         var store = new Store(trades);
@@ -129,9 +130,9 @@ public class TradeStoreTests
         
         var trades = new List<Trade>
         {
-            new Trade { TradeId = 1, Customer = customer, Ammount = 50m, currency = "GBP", TradeDate = DateTime.Now },
-            new Trade { TradeId = 2, Customer = customer, Ammount = 100m, currency = "USD", TradeDate = DateTime.Now },
-            new Trade { TradeId = 3, Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Ammount = 200m, currency = "EUR", TradeDate = DateTime.Now }
+            new Trade { TradeId = 1, Customer = customer, Amount = 50m, Currency = "GBP", TradeDate = DateTime.Now },
+            new Trade { TradeId = 2, Customer = customer, Amount = 100m, Currency = "USD", TradeDate = DateTime.Now },
+            new Trade { TradeId = 3, Customer = new Customer { CustomerId = 20, Name = "Jane Doe", Email = "" }, Amount = 200m, Currency = "EUR", TradeDate = DateTime.Now }
         };
 
         var store = new Store(trades);
@@ -144,4 +145,6 @@ public class TradeStoreTests
 
         Assert.Empty(result);
     }
+    
+    
 }
