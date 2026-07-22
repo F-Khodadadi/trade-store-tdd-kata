@@ -1,6 +1,6 @@
 namespace TradeStore.Core;
 
-public class Store
+public class Store: ITradeStore
 {
     private readonly List<Trade> _trades; // private as its internal list
 
@@ -28,5 +28,10 @@ public class Store
         {
             _trades.Remove(tradeToRemove);
         }
+    }
+
+    public void Remove(Func<Trade, bool> predicate)
+    {
+        throw new NotImplementedException();
     }
 }
